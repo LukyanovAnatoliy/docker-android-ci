@@ -39,6 +39,7 @@ RUN cd /opt \
 # update node.js
 RUN npm install -g n && n stable
 
+# install appcenter cli
 RUN npm install -g appcenter-cli
 
 ENV LANG en_US.UTF-8
@@ -55,3 +56,12 @@ RUN mkdir -p /root/.android \
     && sdkmanager --update
 
 RUN yes | sdkmanager --licenses
+
+RUN sdkmanager \
+  "tools" \
+  "platform-tools" \
+  "emulator"
+
+RUN sdkmanager "build-tools;31.0.0"
+
+RUN sdkmanager "platforms;android-31"
