@@ -15,7 +15,7 @@ RUN apt-get -qq update \
       curl \
       git-core \
       html2text \
-      openjdk-11-jdk \
+      openjdk-17-jdk \
       libc6-i386 \
       lib32stdc++6 \
       lib32gcc1 \
@@ -62,6 +62,6 @@ RUN sdkmanager \
   "platform-tools" \
   "emulator"
 
-RUN sdkmanager "build-tools;31.0.0"
+RUN sdkmanager "build-tools;34.0.0"
 
-RUN sdkmanager "platforms;android-31"
+RUN sdkmanager "platforms;android-33"
