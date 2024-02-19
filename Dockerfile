@@ -65,3 +65,13 @@ RUN sdkmanager \
 RUN sdkmanager "build-tools;34.0.0"
 
 RUN sdkmanager "platforms;android-33"
+
+ENV GRADLE_VERSION 8.5
+ENV GRADLE_USER_HOME /usr/local/gradle-${GRADLE_VERSION}
+ENV ZIP_DIR ${GRADLE_USER_HOME}/wrapper/dists/gradle-${GRADLE_VERSION}-bin/5t9huq95ubn472n8rpzujfbqh
+RUN mkdir -p ${ZIP_DIR}
+ENV GRADLE_SDK_URL https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip
+RUN curl -sSL "${GRADLE_SDK_URL}" -o ${ZIP_DIR}/gradle-${GRADLE_VERSION}-bin.zip  
+
+ENV GRADLE_HOME ${ZIP_DIR}/gradle-${GRADLE_VERSION}
+ENV PATH ${GRADLE_HOME}/bin:$PATH
